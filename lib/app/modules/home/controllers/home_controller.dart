@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   // final user = FirebaseAuth.instance.currentUser!;
 
   String? _name;
+
   String? get name => this._name;
 
   set name(String? value) => this._name = value;
