@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 
@@ -13,11 +14,23 @@ class LoginView extends GetView<LoginController> {
         centerTitle: true,
       ),
       body: Center(
-        child: ElevatedButton(
-          child: const Text("Login"),
-          onPressed: () {
-            controller.login();
+        child: ElevatedButton.icon(
+          // child: const Text("Login"),
+          style: ElevatedButton.styleFrom(
+            // primary:  // use backgroundColor:
+            backgroundColor: Colors.white,
+            // onPrimary:  // use foregroundColor
+            foregroundColor: Colors.black,
+            minimumSize: const Size(double.infinity, 50),
+          ),
+          onPressed: () async {
+            await controller.login();
           },
+          label: const Text("Login with Google"),
+          icon: const FaIcon(
+            FontAwesomeIcons.google,
+            color: Colors.red,
+          ),
         ),
       ),
     );

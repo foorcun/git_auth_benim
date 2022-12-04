@@ -24,6 +24,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="git_auth_benim">
+  <meta name="google-signin-client_id" content="695787289329-m0joqdg87t08pfiijo67p8iig6pngedl.apps.googleusercontent.com"> <!-- bu kod eklenecek -->
+
+
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
@@ -40,6 +43,31 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+
+   <!-- firebase başlangıç -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDhOYc1EQ3a3kh92f-M_PneBnvFZJAXAtM",
+    authDomain: "js-test-e5720.firebaseapp.com",
+    databaseURL: "https://js-test-e5720.firebaseio.com",
+    projectId: "js-test-e5720",
+    storageBucket: "js-test-e5720.appspot.com",
+    messagingSenderId: "695787289329",
+    appId: "1:695787289329:web:ca9051968a41ac869c8750",
+    measurementId: "G-LKHRJPEZT9"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<!-- firebase son -->
+  
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
