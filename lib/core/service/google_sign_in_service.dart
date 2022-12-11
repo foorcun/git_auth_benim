@@ -7,11 +7,26 @@ class GoogleSignInService extends GetxService {
   GoogleSignInAccount? _user;
   final googleSignIn = GoogleSignIn();
 
-  UserCredential? _fireUser;
+  UserCredential? _fireUserCredential;
+
+  final _fireAuth = FirebaseAuth.instance;
+
+// ignore: unnecessary_cast
+  final Rx<User?> myUser = (null as User?).obs;
 
   @override
   void onInit() {
     super.onInit();
+
+    ever(myUser, (_) {
+      print("sdfasdf");
+    });
+
+    _fireAuth.authStateChanges().listen((User? user) {
+      if (user != null) {
+        myUser.value = user;
+      }
+    });
   }
 
   @override
@@ -24,10 +39,6 @@ class GoogleSignInService extends GetxService {
 
   GoogleSignInAccount? getUser() {
     return _user;
-  }
-
-  getFireUser() {
-    return _fireUser;
   }
 
   Future login() async {
@@ -55,7 +66,12 @@ class GoogleSignInService extends GetxService {
     );
     print("login: OAuthCredential: ${googleUser.toString()}");
 
-    _fireUser = await FirebaseAuth.instance.signInWithCredential(credential);
+    _fireUserCredential = await _fireAuth.signInWithCredential(credential);
+
+    print("_fireUserCredential : " + _fireUserCredential.toString());
+    // _fireUserCredential?.user?.refreshToken;
+    // _fireUserCredential?.user?.getIdToken();
+    // _fireUserCredential?.user?.uid;
 
     Get.offAllNamed(Routes.HOME);
   }
@@ -83,6 +99,21 @@ class GoogleSignInService extends GetxService {
       // return tokenResult.token != null;
     } else {
       return false;
+    }
+  }
+
+  yonlendirme({required String homePath, required String loginPath}) {
+    if (myUser.value != null) {
+      print("_firebaseUser bilgileri : " + myUser.value.toString());
+
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        Get.offAllNamed(homePath);
+      });
+    } else {
+      print("elseeee _fireUser");
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        Get.offAllNamed(loginPath);
+      });
     }
   }
 }

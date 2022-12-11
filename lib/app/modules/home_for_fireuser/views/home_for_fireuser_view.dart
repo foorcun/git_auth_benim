@@ -1,17 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:git_auth_benim/core/service/google_sign_in_service.dart';
 
-import '../controllers/home_controller.dart';
+import '../controllers/home_for_fireuser_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeForFireuserView extends GetView<HomeForFireuserController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeView'),
+        title: Text('HomeForFireuserView'),
         centerTitle: true,
       ),
       body: Center(
@@ -19,11 +18,18 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // CircleAvatar(
-            //   radius: 40,
-            //   backgroundImage: NetworkImage(controller.photoUrl!),
-            // ),
-            Text(controller.photoUrl.toString()),
+            // ignore: prefer_const_constructors
+            Obx(
+              () => CircleAvatar(
+                radius: 40,
+                // ignore: prefer_const_constructors
+                backgroundImage: NetworkImage(
+                    // Get.find<GoogleSignInService>().myUser.value!.photoURL!),
+                    controller.photoUrl.value),
+                // "asdf")),
+              ),
+            ),
+            // Text(controller.photoUrl.toString()),
             // Text(
             //   // controller.name == null ? "bu null true" : "bu null false",
             //   controller.name ?? "isim alinamadi",
@@ -36,14 +42,13 @@ class HomeView extends GetView<HomeController> {
                   "isim alinamadi",
               style: const TextStyle(fontSize: 20),
             ),
-
-            Text(controller.email.toString()),
+            Text(Get.find<GoogleSignInService>().myUser.value!.email!),
             ElevatedButton(
               child: const Text("Logout"),
               onPressed: () {
                 controller.logout();
               },
-            )
+            ),
           ],
         ),
       ),

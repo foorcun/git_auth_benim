@@ -20,23 +20,28 @@ class SplashController extends GetxController {
     super.onReady();
     print("onReady");
 
-    if (getStorge.read("id") != null) {
-      // Get.find<GoogleSignInService>().userCheck();
+    // var _user = Get.find<GoogleSignInService>().getFireUser();
 
-      // if (Get.find<GoogleSignInService>().getUser() != null) {
-      print("getStorge.read('id') != null - Get.offAllNamed(Routes.HOME)");
-      Future.delayed(const Duration(milliseconds: 2000), () {
-        Get.offAllNamed(Routes.HOME);
-      });
+    Get.find<GoogleSignInService>().yonlendirme(
+        homePath: Routes.HOME_FOR_FIREUSER, loginPath: Routes.LOGIN);
 
-      // Get.offAllNamed(Routes.HOME);
-      // print("getStorge.read('id') != null ");
-    } else {
-      print("elseeee ");
-      Future.delayed(const Duration(milliseconds: 2000), () {
-        Get.offAllNamed(Routes.LOGIN);
-      });
-    }
+    // if (getStorge.read("id") != null) {
+    //   // Get.find<GoogleSignInService>().userCheck();
+
+    //   // if (Get.find<GoogleSignInService>().getUser() != null) {
+    //   print("getStorge.read('id') != null - Get.offAllNamed(Routes.HOME)");
+    //   Future.delayed(const Duration(milliseconds: 2000), () {
+    //     Get.offAllNamed(Routes.HOME);
+    //   });
+
+    //   // Get.offAllNamed(Routes.HOME);
+    //   // print("getStorge.read('id') != null ");
+    // } else {
+    //   print("elseeee ");
+    //   Future.delayed(const Duration(milliseconds: 2000), () {
+    //     Get.offAllNamed(Routes.LOGIN);
+    //   });
+    // }
   }
 
   @override

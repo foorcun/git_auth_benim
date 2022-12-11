@@ -40,6 +40,7 @@ class LoginController extends GetxController {
     getStorge.write("photourl", _user.photoUrl);
     getStorge.write("email", _user.email);
 
-    Get.offAllNamed(Routes.HOME);
+    // Get.offAllNamed(Routes.HOME);
+    // Get.offAllNamed(Routes.HOME_FOR_FIREUSER);
   }
 }
